@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "node server"
+    "start": "node server",
+    "e2e:ga": "node test_runner"
   },
   "dependencies": {
     "@cypress/vue": "^3.0.0-beta.1",
