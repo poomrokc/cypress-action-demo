@@ -1,34 +1,10 @@
 name: GitHub Actions Demo
 on: [push]
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    container: cypress/browsers:node14.15.0-chrome86-ff82
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cypress install
-        uses: cypress-io/github-action@v2
-        with:
-          runTests: false
-      # report machine parameters
-      - run: npx cypress info
-      - run: node -p 'os.cpus()'
-      - run: npm run build
-
-      - name: Save build folder
-        uses: actions/upload-artifact@v2
-        with:
-          name: dist
-          if-no-files-found: error
-          path: dist
-
   ui-chrome-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.15.0-chrome86-ff82
-    needs: install
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -42,16 +18,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Download the build folders
-        uses: actions/download-artifact@v2
-        with:
-          name: dist
-          path: dist
-
       - name: "UI Tests - Chrome"
         uses: cypress-io/github-action@v2
         with:
-          start: npm run serve
+          start: npm run serve -- --port 3000
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: chrome
