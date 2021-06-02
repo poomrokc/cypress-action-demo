@@ -14,10 +14,20 @@ jobs:
   ci-sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Input
+      - name: Create sync file
         run: |
-          echo "test_run_id: ${{ github.event.inputs.test_run_id }}"
-          echo "build_file_url: ${{ github.event.inputs.build_file_url }}"
+          echo "${{ github.run_id }}" > "${{github.event.inputs.test_run_id}}.sync"
+      - name: Upload sync file
+        uses: zdurham/s3-upload-github-action@master
+        with:
+          args: --acl public-read
+        env:
+          FILE: '${{github.event.inputs.test_run_id}}.sync'
+          AWS_REGION: 'ap-southeast-1'
+          S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          S3_KEY: 'sync/${{github.event.inputs.test_run_id}}.sync'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   ui-chrome-tests:
     timeout-minutes: 15
