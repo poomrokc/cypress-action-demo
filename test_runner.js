@@ -190,7 +190,7 @@ const main = async() => {
         await sleep(30000);
     }
     console.log('RESULT:', conclusion);
-    if(conclusion.success === "success")
+    if(conclusion === "success")
         process.exit(0);
     else
         process.exit(1);
