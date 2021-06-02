@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Print Input
         run: |
-          echo "test_run_id: ${{ github.event.inputs.test_run_id }}""
+          echo "test_run_id: ${{ github.event.inputs.test_run_id }}"
           echo "build_file_url: ${{ github.event.inputs.build_file_url }}"
 
   ui-chrome-tests:
