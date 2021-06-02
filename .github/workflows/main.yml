@@ -36,7 +36,9 @@ jobs:
         run: wget "${{github.event.inputs.build_file_url}}" -O dist.zip
 
       - name: Extract Build
-        run: unzip dist.zip
+        run: |
+          mkdir dist
+          unzip dist.zip -d dist
 
       - name: "UI Tests - Chrome"
         uses: cypress-io/github-action@v2
