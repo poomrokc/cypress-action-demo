@@ -15,6 +15,7 @@ jobs:
       # report machine parameters
       - run: npx cypress info
       - run: node -p 'os.cpus()'
+      - run: npm run build
 
       - name: Save build folder
         uses: actions/upload-artifact@v2
