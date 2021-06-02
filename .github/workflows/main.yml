@@ -20,7 +20,7 @@ jobs:
       - name: Upload sync file
         uses: zdurham/s3-upload-github-action@master
         with:
-          args: --acl public-read
+          args: --acl private
         env:
           FILE: '${{github.event.inputs.test_run_id}}.sync'
           AWS_REGION: 'ap-southeast-1'
