@@ -19,6 +19,6 @@ jobs:
       - name: Save build folder
         uses: actions/upload-artifact@v2
         with:
-          name: build
+          name: dist
           if-no-files-found: error
-          path: build
+          path: dist
