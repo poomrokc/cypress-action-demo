@@ -1,4 +1,4 @@
-name: Cypress
+name: GitHub Actions Demo
 on: [push]
 jobs:
   install:
@@ -23,4 +23,3 @@ jobs:
           name: dist
           if-no-files-found: error
           path: dist
-
