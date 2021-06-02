@@ -17,7 +17,7 @@ jobs:
       - name: "UI Tests - Chrome"
         uses: cypress-io/github-action@v2
         with:
-          start: npm run serve -- --port 3000
+          start: npm start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: chrome
@@ -29,3 +29,4 @@ jobs:
           # Recommended: pass the GitHub token lets this action correctly
           # determine the unique run id necessary to re-run the checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PORT: 3000
