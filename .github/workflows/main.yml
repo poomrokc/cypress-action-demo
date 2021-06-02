@@ -1,5 +1,15 @@
 name: GitHub Actions Demo
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      test_run_id:
+        description: 'Heroku Test Run ID'
+        required: true
+        default: ''
+      build_file_url:
+        description: 'Build file URL to download'
+        required: true
+        default: ''
 jobs:
   ui-chrome-tests:
     timeout-minutes: 15
