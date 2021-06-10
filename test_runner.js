@@ -140,7 +140,7 @@ const github_action_stat = async(token, run_id) => {
 // Main Test Runer
 const main = async() => {
     // get the test uuid
-    let test_run_id = process.env.HEROKU_TEST_RUN_ID;
+    let test_run_id = process.env.HEROKU_TEST_RUN_ID || '1';
     let test_branch = process.env.HEROKU_TEST_RUN_BRANCH || 'main';
     let github_token = process.env.GITHUB_TOKEN;
 
