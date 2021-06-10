@@ -163,37 +163,6 @@ const main = async() => {
         process.exit(1);
     }
     console.log("Github action started");
-
-    // sync - finding the sync file on S3, wait for at most 10 minutes
-    let synced = false;
-    for(let i=0;i<60;i++) {
-        synced = await check_sync_file(test_run_id);
-        if(synced)
-            break;
-        await sleep(10000);
-    }
-    if(!synced) {
-        console.log("ERROR: Synchronizing github actions failed");
-        process.exit(1);
-    }
-    console.log(`Github action synced with run id ${synced}`);
-    console.log(`Checking status every 30 seconds, to view logs, please go to https://github.com/poomrokc/cypress-action-demo/actions/runs/${synced}`)
-
-    let conclusion = null;
-    for(let i=0;i<10;i++) {
-        let data = await github_action_stat(github_token, synced);
-        console.log(new Date().toLocaleString(), 'STATUS:', data.status);
-        if(data.status === "completed") {
-            conclusion = data.conclusion;
-            break;
-        }
-        await sleep(30000);
-    }
-    console.log('RESULT:', conclusion);
-    if(conclusion === "success")
-        process.exit(0);
-    else
-        process.exit(1);
 }
 
 main();
