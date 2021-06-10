@@ -84,8 +84,10 @@ const github_action_start = async(token, test_branch, test_run_id, build_file_ur
             'Authorization': `token ${token}`,
             'Accept': 'application/vnd.github.v3+json'
         }});
+        console.log(res);
         return true;
     } catch(err) {
+        console.log(err);
         return false;
     }
 }
