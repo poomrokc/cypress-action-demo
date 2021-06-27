@@ -15,12 +15,12 @@ jobs:
   ui-chrome-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    container: cypress/browsers:node14.15.0-chrome86-ff82
+    container: cypress/browsers:node10.16.3-chrome80-ff73
     strategy:
       fail-fast: false
       matrix:
         # run copies of the current job in parallel
-        containers: [1,2,3,4,5,6]
+        containers: [1]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
