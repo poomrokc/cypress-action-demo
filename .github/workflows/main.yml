@@ -40,7 +40,7 @@ jobs:
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: chrome
-          spec: cypress/integration/*
+          spec: cypress/integration/**/*
           record: true
           parallel: true
         env:
